@@ -1,9 +1,9 @@
 'use client'
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const ARROW_SRC = "https://static.tildacdn.one/tild3134-6537-4562-a236-353632313365/Arrow_7.svg";
-const TG_URL = "https://t.me/iman_ahmedovnaa_bot?start=start";
 
 const benefits = [
   "Energiyasizlikdan qanday qilib xalos bo'lishni",
@@ -39,8 +39,9 @@ function CTAButton({ onClick, fontSize = 15 }: { onClick: () => void; fontSize?:
 }
 
 export default function VSLPage() {
-  const openTelegram = () =>
-    window.open(TG_URL, "_blank", "noopener,noreferrer");
+  const router = useRouter();
+
+  const goToThankYou = () => router.push("/thankyou");
 
   return (
     <>
@@ -126,16 +127,16 @@ export default function VSLPage() {
 
             <div className="absolute left-1/2 -mt-12 -translate-x-1/2 rounded-2xl overflow-hidden border-2 border-[#8b6cff]"
               style={{ top: 200, width: 320 }}>
-              <Image src="/vsl.png" alt="thumbnail" width={320} height={180}
+              <Image src="/vsl.jpg" alt="thumbnail" width={320} height={180}
                 className="w-full block" priority />
             </div>
 
-            {/* ✅ Tugma 1 — mobile */}
+            {/* Tugma 1 — mobile */}
             <div className="absolute left-1/2 -mt-15 -translate-x-1/2" style={{ top: 410, width: 300, height: 62 }}>
-              <CTAButton onClick={openTelegram} fontSize={14} />
+              <CTAButton onClick={goToThankYou} fontSize={14} />
             </div>
 
-            {/* ✅ BEPUL 1 — mobile */}
+            {/* BEPUL 1 — mobile */}
             <div className="absolute left-1/2 -mt-15 -translate-x-1/2" style={{ top: 488 }}>
               <BepulBadge size="md" />
             </div>
@@ -153,42 +154,41 @@ export default function VSLPage() {
               Qanday qilib 3 ta texnika orqali energiyasizlikdan xalos bo&apos;lish mumkin?
             </h1>
 
-            <div className="rounded-[30px] -mt-2 overflow-hidden  w-[min(640px,90vw)]">
-              <Image src="/vsl.png" alt="thumbnail" width={640} height={360}
+            <div className="rounded-[30px] -mt-2 overflow-hidden w-[min(640px,90vw)]">
+              <Image src="/vsl.jpg" alt="thumbnail" width={640} height={360}
                 className="w-full block" priority />
             </div>
 
-            {/* ✅ Tugma 2 — desktop */}
+            {/* Tugma 2 — desktop */}
             <div className="w-[360px] h-[70px]">
-              <CTAButton onClick={openTelegram} fontSize={16} />
+              <CTAButton onClick={goToThankYou} fontSize={16} />
             </div>
 
-            {/* ✅ BEPUL 2 — desktop */}
+            {/* BEPUL 2 — desktop */}
             <BepulBadge size="lg" />
           </div>
         </div>
 
         {/* ═══════════════════════════════════════════
-            ✅ URGENT + BENEFITS
+            URGENT + BENEFITS
         ═══════════════════════════════════════════ */}
         <section className="px-4 pt-4 pb-14 flex flex-col items-center">
           <div className="w-full max-w-[600px]">
 
-            {/* ✅ Urgent matn */}
-            <div className="flex -mt-25 items-center justify-center gap-2 mb-5 ">
+            {/* Urgent matn */}
+            <div className="flex -mt-25 items-center justify-center gap-2 mb-5">
               <p className="text-center font-extrabold text-[15px] md:text-[20px] text-[#c80000] tracking-tight leading-snug">
                 Shoshiling. Tez Orada O&apos;chiriladi!
               </p>
             </div>
 
-            {/* ✅ Benefits karta */}
-            <div className="bg-white  rounded-[28px] p-6 md:p-9 shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
+            {/* Benefits karta */}
+            <div className="bg-white rounded-[28px] p-6 md:p-9 shadow-[0_8px_48px_rgba(0,0,0,0.10)]">
 
               {/* Sarlavha */}
               <div className="flex items-center text-center flex-wrap gap-3 mb-6">
-                
                 <span className="font-extrabold text-center align-center text-[18px] text-[#111]">
-                      Bepul Video Darsda Siz:
+                  Bepul Video Darsda Siz:
                 </span>
               </div>
 
@@ -212,14 +212,13 @@ export default function VSLPage() {
               {/* Divider */}
               <div className="h-px bg-[#ede9e2] my-6" />
 
-              {/* ✅ Tugma 3 — benefits ichida */}
-              <div className="w-full h-[62px] ">
-                <CTAButton onClick={openTelegram} fontSize={14} />
+              {/* Tugma 3 — benefits ichida */}
+              <div className="w-full h-[62px]">
+                <CTAButton onClick={goToThankYou} fontSize={14} />
               </div>
 
-              <div className='mt-8'>
-              <BepulBadge size="sm" />
-
+              <div className="mt-8">
+                <BepulBadge size="sm" />
               </div>
             </div>
           </div>

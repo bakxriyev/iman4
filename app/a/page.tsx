@@ -62,7 +62,7 @@ export default function SiteA() {
               <div className="flex flex-col items-center text-center">
                 {/* Badge */}
                 <span className="inline-block border -mt-9 border-red-600 rounded-full px-3 py-1.5 text-xs font-medium text-black mb-4 order-1">
-                  1-2-3 may | Soat 20:00 da
+                  8-9-10 may | Soat 20:00 da
                 </span>
 
                 {/* Subtitle */}
@@ -70,19 +70,16 @@ export default function SiteA() {
                   Iman Akhmedovnadan 3 kunlik bepul onlayn dars
                 </p>
 
-                {/* Title */}
-                <h1 className="text-2xl font-extrabold text-black mb-3 order-3">
-                  QANDAY QILIB ... 2026
-                </h1>
+              
 
                 {/* Question (h2) */}
-                <h2 className="text-lg font-bold text-black leading-tight mb-6 order-4">
-                  Qanday qilib <span className="text-red-700">yangi yilda</span> zararli odatlardan
-                  qutilish va o‘z maqsadingizga intizom bilan erishish mumkin?
+                <h2 className="text-[20px] font-bold text-black leading-tight mb-6 order-4">
+                  Qanday qilib <span className="text-red-700">dangasalikdan xalos bo’lib</span> 
+                  <span>,ko’zlagan maqsadingizga intizom bilan erishish mumkin?</span>
                 </h2>
 
                 {/* Image */}
-                <div className="flex justify-center items-end pt-0 order-5 md:order-1 -mt-12">
+                <div className="flex justify-center items-end pt-0 order-5 md:order-1 -mt-5">
                   <img
                     src="./aa.png"
                     alt="Iman Akhmedovna"
@@ -118,18 +115,18 @@ export default function SiteA() {
                 <div className="bg-gray-50 border-2 border-gray-300 rounded-3xl p-5 w-full max-w-[513px] mx-auto mb-8 order-7">
                   <p className="text-sm font-bold mb-4 text-black">Marafonda siz:</p>
                   {[
-                    'Qanday qilib <strong>2026 yil uchun</strong> to‘g‘ri va aniq maqsad qo‘yishning yangi usulini',
-                    'Qanday qilib dangasalikni yengib, <strong>istalgan maqsadga kuchli intizom bilan erishish</strong> qadamlarini',
-                    '<strong>2026-yilda</strong> yaxshi odatlarni shakllantirib, istalgan ko‘nikmani <strong>10 baravar tezroq o‘rganish</strong> usullarini',
+                    'Qanday qilib zararli odatlardan xalos bo’lib, istalgan maqsadga erishishni.',
+                    'Qanday qilib dangasalikni yengib, ibodatlarda mustahkam bo’lish qadamlarini.',
+                    'Va qanday qilib intizomni shakllantirish orqali istalgan ko’nikmani 10 barobar tezroq o’rganish usullarini bilib olasiz.',
                   ].map((text, idx) => (
                     <div key={idx} className="flex gap-3 mb-4 last:mb-0">
                       <img
                         src="https://optim.tildacdn.one/tild3534-6335-4562-b366-386462303035/-/resize/70x/-/format/webp/Ellipse_163.png.webp"
                         alt="icon"
-                        className="w-6 h-5 mt-0.5"
+                        className="w-5 h-5 mt-0.5"
                       />
-                      <p
-                        className="text-xs font-light text-black leading-relaxed"
+                      <b
+                        className="text-xs font-bold text-black leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: text }}
                       />
                     </div>
@@ -182,7 +179,7 @@ export default function SiteA() {
               <div className="flex flex-col items-start space-y-6">
                 {/* Badge */}
                 <span className="inline-block border-2 border-red-600 rounded-full px-4 py-1.5 text-sm font-semibold text-black bg-white/50 backdrop-blur-sm shadow-sm">
-                  🔥 1-2-3 may | Soat 20:00 da
+                   8-9-10 may | Soat 20:00 da
                 </span>
 
                 {/* Subtitle */}
@@ -190,15 +187,11 @@ export default function SiteA() {
                   Iman Akhmedovnadan 3 kunlik bepul onlayn dars
                 </p>
 
-                {/* Title */}
-                <h1 className="text-5xl font-black text-black leading-tight">
-                  QANDAY QILIB ... 2026
-                </h1>
+               
 
                 {/* Question */}
                 <h2 className="text-2xl font-bold text-black leading-snug">
-                  Qanday qilib <span className="text-red-600 underline decoration-wavy">yangi yilda</span> zararli odatlardan
-                  qutilish va o‘z maqsadingizga intizom bilan erishish mumkin?
+                  Qanday qilib <span className="text-red-600 underline decoration-wavy">dangasalikdan xalos bo’lib ko’zlagan maqsadingizga intizom bilan erishish mumkin? </span> 
                 </h2>
 
                 {/* Card with benefits - enhanced */}
