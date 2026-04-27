@@ -101,8 +101,8 @@ export default function SiteA() {
                   Iman Akhmedovnadan 3 kunlik bepul onlayn dars
                 </p>
                 <h2 className="text-[20px] font-bold text-black leading-tight mb-6 order-4">
-                  Qanday qilib <span className="text-red-700">dangasalikdan xalos bo’lib</span><span>,</span>
-                  <span>ko’zlagan maqsadingizga intizom bilan erishish mumkin?</span>
+                <span className="text-red-700">Top-5 ta</span><span> texnika:</span>
+                 Qanday qilib chala qolgan ishlarni <span className="text-red-700">100% </span>natija bilan yakunlash mumkin?
                 </h2>
                 <div className="flex justify-center items-end pt-0 order-5 md:order-1 -mt-5">
                   <img
@@ -133,9 +133,10 @@ export default function SiteA() {
                <div className="bg-gray-50 border-2 border-gray-300 rounded-3xl p-5 w-full max-w-[513px] mx-auto mb-8 order-7">
                   <p className="text-sm font-bold mb-4 text-black">Marafonda siz:</p>
                   {[
-                    'Qanday qilib zararli odatlardan xalos bo’lib, istalgan maqsadga erishishni.',
-                    'Qanday qilib dangasalikni yengib, ibodatlarda mustahkam bo’lish qadamlarini.',
-                    'Va qanday qilib intizomni shakllantirish orqali istalgan ko’nikmani 10 barobar tezroq o’rganish usullarini bilib olasiz.',
+                    'Qanday qilib Ichki "tormozlar" va psixologik bloklar diagnostikasini yechish orqali Energiyangizni so‘rayotgan "ochiq fayllar" (tugallanmagan ishlar) ro‘yxatini tuzish va ularni saralashni',
+                    '"Minimal qadam" texnikasi orqali eng qiyin vazifani muzlatilgan joyidan qo‘zg‘atishni',
+                    'Erkakcha "shunqorlik" emas, balki ayollik energiyasini saqlagan holda maqsadga erishishni',
+                    'Yakuniy finish va "G\'oliblik" strategiyasini mustahkamlashni ko’rib chiqamiz'
                   ].map((text, idx) => (
                     <div key={idx} className="flex gap-3 mb-4 last:mb-0">
                       <img

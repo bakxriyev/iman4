@@ -166,7 +166,7 @@ export default function Maqsad2025Page() {
           <div className="flex -mt-9 justify-center pt-11 anim-badge">
             <div className="inline-flex items-center justify-center border-[1.5px] border-red-600 rounded-full bg-red-600/10 backdrop-blur-md px-[26px] py-[9px]">
               <span className="font-unbounded text-[13px] tracking-[.05em] text-white">
-                1-2-3 May &nbsp;|&nbsp; Soat 20:00 da
+                8-9-10 May &nbsp;|&nbsp; Soat 20:00 da
               </span>
             </div>
           </div>
@@ -178,18 +178,14 @@ export default function Maqsad2025Page() {
             &nbsp;marafon
           </p>
 
-          {/* title */}
-          <h1 className="font-unbounded anim-title hero-title-size text-center text-[3.6rem] font-black mt-[14px] tracking-[-.02em] leading-[1.05]">
-            <span className="bg-gradient-to-r from-white via-white to-red-200 bg-clip-text text-transparent">NIMADUR</span>
-            <span className="bg-gradient-to-r from-red-600 to-red-300 bg-clip-text text-transparent"> 2026</span>
-          </h1>
+          
 
           {/* two-column grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-8">
             {/* LEFT */}
             <div>
-              <p className="text-[1.08rem] text-center -mt-6 font-bold leading-[1.65] text-white mb-7">
-                Qanday qilib 2026-yil uchun qadam-baqadam reja tuzish va o&apos;zingiz xohlagan maqsadga erishish mumkin?
+              <p className="text-[22px] text-center -mt-6 font-bold leading-[1.65] text-white mb-7">
+                Duo ijobati orqali, qarz va kreditlardan halos bo’lishmi 3 ta yo’li
               </p>
               <div className="animate-img flex justify-center -mt-5 items-end relative">
                 <div className="absolute bottom-0 left-1/2  -translate-x-1/2 w-[300px] h-[240px] bg-red-600/60 blur-[44px]  z-0" />
@@ -206,24 +202,29 @@ export default function Maqsad2025Page() {
                 >
                   RO&apos;YXATDAN O&apos;TISH
                 </button>
+                <div className="flex items-center justify-center gap-3 mt-3">
+                    <img
+  src="https://optim.tildacdn.one/tild6264-6337-4463-b934-656161336537/-/resize/164x/-/format/webp/Arrow_2.png.webp"
+  alt="arrow"
+  className="w-12 transition-transform duration-200 hover:translate-x-1 invert"
+/>
+                    <span className="text-4xl font-extrabold text-white">BEPUL</span>
+                </div>
               </div>
             </div>
-            <div className="anim-free text-center my-3">
-                <span className="font-unbounded bg-gradient-to-r from-white -mt-4 via-red-600 to-white bg-clip-text text-transparent text-[1.75rem] font-bold block">
-                  BEPUL
-                </span>
-              </div>
-
+            
+<br />
             {/* RIGHT (image already placed above in left column for layout consistency) */}
             <div className="hidden md:block" />
           </div>
         </div>
           <div className=" rounded-3xl p-5 w-full max-w-[513px] mx-auto mb-8 order-7">
-                  <p className="text-sm font-bold mb-2 text-white text-center">Marafonda siz:</p>
+                  <p className="text-[20px] font-bold mb-2 text-white text-center">Marafonda siz:</p>
                   {[
-                    'Qanday qilib <strong>2026 yil uchun</strong> to‘g‘ri va aniq maqsad qo‘yishning yangi usulini',
-                    'Qanday qilib dangasalikni yengib, <strong>istalgan maqsadga kuchli intizom bilan erishish</strong> qadamlarini',
-                    '<strong>2026-yilda</strong> yaxshi odatlarni shakllantirib, istalgan ko‘nikmani <strong>10 baravar tezroq o‘rganish</strong> usullarini',
+                    'Qanday qilib psihologik tomondan o’zingizni RAT holatiga keltirib duolaringiz ijobat bo’lish usulini',
+                    'Qanday qilib 3 ta yo’l orqali qarzdorlikdan chiqib, moliyaviy erkinlikka chiqish yo’llarini',
+                    'Ong osti psixologik bloklarni yengib, 2026 yil moliyaviy erkinlikka chiqishni usullarini',
+                    'Qanday qilib yetishmovchilik dasturini to’g’ri prorobotka qilib, doimiy yetishmovchiliklardan halos bo’lish yo’llarini o’rganasiz'
                   ].map((text, idx) => (
                     <div key={idx} className="flex gap-3 mb-4 last:mb-0">
                       <img
@@ -232,7 +233,7 @@ export default function Maqsad2025Page() {
                         className="w-6 h-5 mt-0.5"
                       />
                       <p
-                        className="text-xs font-light text-white leading-relaxed"
+                        className="text-[13px] font-light text-white leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: text }}
                       />
                     </div>

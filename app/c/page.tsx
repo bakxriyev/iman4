@@ -116,9 +116,10 @@ export default function Page() {
   const OVAL   = "https://static.tildacdn.one/tild3332-3265-4563-b065-643064633266/Ellipse_4_6_1.png";
 
   const bullets = [
-    "Qanday qilib 2025 yil uchun to'g'ri va aniq maqsad qo'yishning yangi usulini",
-    "Qanday qilib dangasalikni yengib, istalgan maqsadga kuchli intizom bilan erishish qadamlarini",
-    "2025-yilda daromadni oshirish va istalgan ko'nikmani 10 barobar tezroq o'rganish usullarini ko'rib chiqamiz",
+    "Qanday qilib dangasalikdan halos bo’lib, maqsad va missiyani to’g’ri qo’yish usulini",
+    "Qanday qilib hech qanday bosimlarsiz, shunchaki Yaratgan dangasalik qilish orqali istalgan orzu - maqsadga oson erishish usullarini",
+    "2026 yilda daromadni oshirish va istalgan ko’nikmani 10 barobar tezroq o’rganish usullarini",
+    'Qanday qilib dangasalikni yengib, hushu ila ibodat qilish usullarini psixologik tomondan tahlillarini ko’rib chiqamiz.'
   ];
 
   return (
@@ -241,7 +242,7 @@ export default function Page() {
           <div className={`fu d1${vis?" v":""}`} style={{ textAlign: "center", marginBottom: 20, }}>
             <span className="badge">
               <span style={{ color: "#fff", fontWeight: 600, fontSize: "0.87rem" }}>
-                1-2-3 May | Soat 20:00 da
+                8-9-10 May | Soat 20:00 da
               </span>
             </span>
           </div>
@@ -253,18 +254,6 @@ export default function Page() {
             </p>
           </div>
 
-          {/* 3. Title */}
-          <div className={`fu d3${vis?" v":""}`} style={{ textAlign: "center", marginBottom: 16 }}>
-            <h1 style={{
-              color: "#fff", fontWeight: 900, lineHeight: 1.08,
-              fontSize: "clamp(2.2rem,10vw,3.1rem)",
-              textShadow: "0 2px 24px rgba(0,0,0,.4)",
-              letterSpacing: "0.5px",
-            }}>
-              MAQSAD 2026
-            </h1>
-          </div>
-
           {/* 4. Question */}
           <div className={`fu d4${vis?" v":""}`} style={{ textAlign: "center", marginBottom: 26 }}>
             <h2 style={{
@@ -272,8 +261,7 @@ export default function Page() {
               fontSize: "clamp(1.05rem,4.7vw,1.2rem)",
               lineHeight: 1.55,
             }}>
-              Yangi 2026-yilda dangasalikni butunlay yengib,
-              maqsadingiz sari aniq harakat qilishni xohlaysizmi?
+              Qanday qilib dangasalikdan 3 ta yo’l orqali halos bo’lib , muvaffaqiyatli ayol bo’lish sirlari
             </h2>
           </div>
 
@@ -287,7 +275,7 @@ export default function Page() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={OVAL} alt="" width={18} height={10}
                     style={{ width: 18, height: 10, objectFit: "contain", flexShrink: 0, marginTop: 2 }} />
-                  <p style={{ color: "rgba(255,255,255,.85)", fontSize: "12px", fontWeight: 400, lineHeight: 1.55 }}>
+                  <p style={{ color: "rgba(255,255,255,.85)", fontSize: "11px", fontWeight: 400, lineHeight: 1.55 }}>
                     {txt}
                   </p>
                 </div>
@@ -308,16 +296,21 @@ export default function Page() {
             </div>
           </div>
 
-          {/* 6. BEPUL */}
-          <div className={`fu d6${vis?" v":""}`} style={{ marginBottom: 16,textAlign:"center" }}>
-            <span className="bepul">BEPUL</span>
-          </div>
-
+          
           {/* 7. CTA */}
           <div className={`fu d7${vis?" v":""}`} style={{ marginBottom: 28 }}>
             <button className="cta" onClick={() => setPopup(true)}>
               RO&apos;YXATDAN O&apos;TISH
             </button>
+            <br />
+            <div className="flex items-center justify-center gap-3">
+                    <img
+  src="https://optim.tildacdn.one/tild6264-6337-4463-b934-656161336537/-/resize/164x/-/format/webp/Arrow_2.png.webp"
+  alt="arrow"
+  className="w-12 transition-transform duration-200 hover:translate-x-1 invert"
+/>
+                    <span className="text-4xl font-extrabold text-white">BEPUL</span>
+                </div>
           </div>
 
          
