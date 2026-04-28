@@ -630,7 +630,6 @@ export default function SiteA() {
           animation: fade-in 0.2s ease-out;
         }
       `}</style>
-      <script async src="https://spliturltest.asosit.uz/abtest.js" data-site-id="s1JyprFIVWNXo-WI" data-api-base="https://spliturltest.asosit.uz"></script>
     </>
   )
 }

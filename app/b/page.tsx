@@ -661,7 +661,6 @@ export default function PageB() {
           </div>
         </div>
       )}
-      <script async src="https://spliturltest.asosit.uz/abtest.js" data-site-id="s1JyprFIVWNXo-WI" data-api-base="https://spliturltest.asosit.uz"></script>
     </>
   )
 }
