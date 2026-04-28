@@ -129,6 +129,9 @@ export default function ThankYouPage() {
       >
         Jonli Efirga Kirish
       </button>
+      
     </div>
+    
+    
   )
 }
