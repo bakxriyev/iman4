@@ -118,20 +118,17 @@ export default function SiteA() {
   const countryButtonRef = useRef<HTMLButtonElement>(null)
   const phoneInputRef = useRef<HTMLInputElement>(null)
 
-  // Get selected country info
   const selectedCountry =
     countries.find(
       (c) => c.code === formData.countryCode && c.name === formData.countryName
     ) || countries[0]
 
-  // Filter countries based on search
   const filteredCountries = countries.filter(
     (c) =>
       c.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
       c.code.includes(countrySearch)
   )
 
-  // Click outside handler for country dropdown
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -148,7 +145,6 @@ export default function SiteA() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  // Escape key to close dropdown
   useEffect(() => {
     function handleEscape(e: KeyboardEvent) {
       if (e.key === 'Escape' && showCountryDropdown) {
@@ -161,7 +157,7 @@ export default function SiteA() {
   }, [showCountryDropdown])
 
   useEffect(() => {
-    let duration = 60 * 2 // 2 minutes
+    let duration = 60 * 2
     timerRef.current = setInterval(() => {
       const minutes = Math.floor((duration % 3600) / 60)
       const seconds = duration % 60
@@ -178,7 +174,6 @@ export default function SiteA() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    // Validation
     if (!formData.name.trim()) {
       setFormError('Ismingizni kiriting!')
       return
@@ -186,7 +181,7 @@ export default function SiteA() {
 
     const phoneDigits = formData.phone.replace(/\D/g, '')
     if (!phoneDigits || phoneDigits.length < (selectedCountry?.minLength || 7)) {
-      setFormError('Telefon raqamingizni to\'g\'ri kiriting!')
+      setFormError("Telefon raqamingizni to'g'ri kiriting!")
       return
     }
 
@@ -194,27 +189,25 @@ export default function SiteA() {
     setIsSubmitting(true)
 
     try {
-      // Insert into 'leads' table with correct column names
       const { error } = await supabase.from('leads').insert([
         {
           full_name: formData.name.trim(),
           phone_number: `${formData.countryCode}${phoneDigits}`,
-          type: 'a', // Fixed type for /a page
+          type: 'a',
           created_at: new Date().toISOString(),
         },
       ])
 
       if (error) {
-        setFormError('Xatolik yuz berdi. Iltimos, qaytadan urinib ko‘ring.')
+        setFormError('Xatolik yuz berdi. Iltimos, qaytadan urinib ko`ring.')
         setIsSubmitting(false)
         return
       }
 
-      // Success: redirect to thank-you page
       router.push('/thank-you')
     } catch (err) {
       console.error('Submission error:', err)
-      setFormError('Server bilan bog‘liq xatolik. Iltimos, keyinroq urinib ko‘ring.')
+      setFormError('Server bilan bog`liq xatolik. Iltimos, keyinroq urinib ko`ring.')
       setIsSubmitting(false)
     }
   }
@@ -229,20 +222,31 @@ export default function SiteA() {
         }}
       >
         <div className="max-w-7xl w-full mx-auto">
-          {/* ========== MOBILE VERSION (exactly as original) ========== */}
+
+          {/* ========== MOBILE VERSION ========== */}
           <div className="block md:hidden">
             <div className="grid grid-cols-1 gap-0">
               <div className="flex flex-col items-center text-center">
-                <span className="inline-block border -mt-9 border-red-600 rounded-full px-3 py-1.5 text-xs font-medium text-black mb-4 order-1">
+
+                <span className="inline-block border -mt-4 border-red-600 rounded-full px-3 py-1.5 text-xs font-medium text-black mb-4 order-1">
                   8-9-10 may | Soat 20:00 da
                 </span>
+
                 <p className="text-xs font-light text-black mb-2 order-2">
                   Iman Akhmedovnadan 3 kunlik bepul onlayn dars
                 </p>
-                <h2 className="text-[20px] font-bold text-black leading-tight mb-6 order-4">
-                  <span className="text-red-700">Top-5 ta</span><span> texnika:</span>
-                  Qanday qilib chala qolgan ishlarni <span className="text-red-700">100% </span>natija bilan yakunlash mumkin?
+
+                {/* SARLAVHA */}
+                <h1 className="text-[28px] font-black text-black leading-tight mb-3 order-3 uppercase tracking-wide text-center">
+                  <span className="block text-[30px] font-black text-black leading-none">Xotirjam <span className='font-black text-black'>Ayol </span><span className='font-black text-red-700'>Sirlari</span></span>
+               </h1>
+
+                <h2 className="text-[18px] font-bold text-black leading-tight mb-6 order-4">
+                  <span className="text-black">Ko'pchilik ayollar bilmaydigan</span>
+                  {' '} <span className='text-red-700'>3 ta sir</span> — siz uchun hayotingizni{' '}
+                  <span className="text-black">tubdan o'zgartirishi mumkin</span>
                 </h2>
+
                 <div className="flex justify-center items-end pt-0 order-5 md:order-1 -mt-5">
                   <img
                     src="./aa.png"
@@ -250,12 +254,13 @@ export default function SiteA() {
                     className="w-full max-w-[250px] h-auto mx-auto"
                   />
                 </div>
+
                 <div className="w-full max-w-[340px] mx-auto order-6 -mt-12 mb-8">
                   <button
                     onClick={() => setShowPopup(true)}
-                    className="w-full bg-red-600 text-white font-extrabold text-xs tracking-wider uppercase py-4 px-5 rounded-xl shadow-[0_6px_0_#8b0e0e] active:shadow-[0_2px_0_#8b0e0e] active:translate-y-1 transition-all duration-100 hover:bg-red-700"
+                    className="w-full bg-red-600 text-white font-extrabold text-[22px] tracking-wider uppercase py-3 px-3 rounded-xl shadow-[0_6px_0_#8b0e0e] active:shadow-[0_2px_0_#8b0e0e] active:translate-y-1 transition-all duration-100 hover:bg-red-700"
                   >
-                    RO‘YXATDAN O‘TISH
+                    RO'YXATDAN O'TISH
                   </button>
                   <div className="flex items-center justify-center gap-3 mt-3">
                     <img
@@ -265,20 +270,19 @@ export default function SiteA() {
                     />
                     <span className="text-4xl font-extrabold text-black">BEPUL</span>
                   </div>
-                  <div className="w-full text-center bg-black/4 mt-4 rounded-2xl py-3 px-2 order-9">
+                  {/* <div className="w-full text-center bg-black/4 mt-4 rounded-2xl py-3 px-2 order-9">
                     <span className="text-2xl font-extrabold text-black">{timerDisplay}</span>
-                  </div>
+                  </div> */}
                 </div>
+
                 <div className="bg-gray-50 border-2 border-gray-300 rounded-3xl p-5 w-full max-w-[513px] mx-auto mb-8 order-7 text-left">
-                  <p className="text-sm font-bold mb-4 text-black text-center">
+                  <p className="text-[20px] font-bold mb-4 text-black text-center">
                     Marafonda siz:
                   </p>
-
                   {[
-                    'Qanday qilib Ichki "tormozlar" va psixologik bloklar diagnostikasini yechish orqali Energiyangizni so‘rayotgan "ochiq fayllar" (tugallanmagan ishlar) ro‘yxatini tuzish va ularni saralashni',
-                    '"Minimal qadam" texnikasi orqali eng qiyin vazifani muzlatilgan joyidan qo‘zg‘atishni',
-                    'Erkakcha "shunqorlik" emas, balki ayollik energiyasini saqlagan holda maqsadga erishishni',
-                    'Yakuniy finish va "G\'oliblik" strategiyasini mustahkamlashni ko\'rib chiqamiz',
+                    "Ibodatga ishtiyoq bilan turish va dangasalikni yengishning psixologik va amaliy yo`lini bilib olasiz",
+                    "Nega pul qo'lingizda turmaydi va qarzlar ko'payaverdi? Aniq javobini olasiz",
+                    "Eringizning hurmati va e`tiborini qaytarishning sirli yo`lini o`rganasiz",
                   ].map((text, idx) => (
                     <div key={idx} className="flex items-start gap-3 mb-4 last:mb-0 w-full">
                       <img
@@ -286,20 +290,20 @@ export default function SiteA() {
                         alt="icon"
                         className="w-5 h-5 mt-0.5 flex-shrink-0"
                       />
-
                       <p
-                        className="text-xs font-bold text-black leading-relaxed text-left w-full"
+                        className="text-[15px] font-bold text-black leading-relaxed text-left w-full"
                         dangerouslySetInnerHTML={{ __html: text }}
                       />
                     </div>
                   ))}
                 </div>
+
                 <div className="w-full max-w-[340px] mx-auto order-8 mb-8">
                   <button
                     onClick={() => setShowPopup(true)}
-                    className="w-full bg-red-600 text-white font-extrabold text-xs tracking-wider uppercase py-4 px-5 rounded-xl shadow-[0_6px_0_#8b0e0e] active:shadow-[0_2px_0_#8b0e0e] active:translate-y-1 transition-all duration-100 hover:bg-red-700"
+                    className="w-full bg-red-600 text-white font-extrabold text-[22px] tracking-wider uppercase py-3 px-3 rounded-xl shadow-[0_6px_0_#8b0e0e] active:shadow-[0_2px_0_#8b0e0e] active:translate-y-1 transition-all duration-100 hover:bg-red-700"
                   >
-                    RO‘YXATDAN O‘TISH
+                    RO'YXATDAN O'TISH
                   </button>
                   <div className="flex items-center justify-center gap-3 mt-3">
                     <img
@@ -310,6 +314,7 @@ export default function SiteA() {
                     <span className="text-4xl font-extrabold text-black">BEPUL</span>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -317,6 +322,8 @@ export default function SiteA() {
           {/* ========== DESKTOP VERSION ========== */}
           <div className="hidden md:block">
             <div className="grid grid-cols-2 gap-12 items-center">
+
+              {/* LEFT — rasm */}
               <div className="relative flex justify-center">
                 <div className="relative z-10">
                   <div className="absolute inset-0 bg-gradient-to-tr from-red-500/20 to-transparent rounded-full blur-3xl"></div>
@@ -329,29 +336,45 @@ export default function SiteA() {
                 <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-red-100 rounded-full blur-2xl opacity-40 -z-0"></div>
                 <div className="absolute -top-6 -right-6 w-64 h-64 bg-amber-100 rounded-full blur-2xl opacity-30 -z-0"></div>
               </div>
-              <div className="flex flex-col items-start space-y-6">
+
+              {/* RIGHT — matnlar (mobile dan ko'chirilgan) */}
+              <div className="flex flex-col items-start space-y-5">
+
+                {/* Badge */}
                 <span className="inline-block border-2 border-red-600 rounded-full px-4 py-1.5 text-sm font-semibold text-black bg-white/50 backdrop-blur-sm shadow-sm">
-                  🔥 1-2-3 may | Soat 20:00 da
+                  🔥 8-9-10 may | Soat 20:00 da
                 </span>
+
+                {/* Kichik tavsif */}
                 <p className="text-base font-medium text-black/80 tracking-wide">
                   Iman Akhmedovnadan 3 kunlik bepul onlayn dars
                 </p>
-                <h1 className="text-5xl font-black text-black leading-tight">QANDAY QILIB ... 2026</h1>
+
+                {/* Asosiy sarlavha — mobile bilan bir xil */}
+                <h1 className="text-5xl font-black uppercase tracking-wide leading-tight">
+                  <span className="block text-red-700">Xotirjam Ayol</span>
+                  <span className="block text-black">Sirlari</span>
+                </h1>
+
+                {/* H2 tavsif — mobile bilan bir xil */}
                 <h2 className="text-2xl font-bold text-black leading-snug">
-                  Qanday qilib <span className="text-red-600 underline decoration-wavy">yangi yilda</span> zararli odatlardan
-                  qutilish va o‘z maqsadingizga intizom bilan erishish mumkin?
+                  <span className="text-red-600">Qanday qilib</span> 3 kun ichida dangasalik, qarz va oilaviy
+                  muammolardan{' '}
+                  <span className="text-red-600 underline decoration-wavy">qutilib,</span>{' '}
+                  xotirjam ayolga aylanish mumkin
                 </h2>
+
+                {/* Card — nima o'rganasiz — mobile bilan bir xil */}
                 <div className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 w-full shadow-xl text-left">
-                  <p className="text-lg font-bold mb-5 text-black flex gap-2 items-center">
+                  <p className="text-[19px] font-bold mb-5 text-black flex gap-2 items-center">
                     <span className="text-red-600 text-2xl">✦</span>
                     Marafonda siz:
                   </p>
-
                   <div className="space-y-4">
                     {[
-                      'Qanday qilib <strong class="text-red-700">2026 yil uchun</strong> to‘g‘ri va aniq maqsad qo‘yishning yangi usulini',
-                      'Qanday qilib dangasalikni yengib, <strong class="text-red-700">istalgan maqsadga kuchli intizom bilan erishish</strong> qadamlarini',
-                      '<strong class="text-red-700">2026-yilda</strong> yaxshi odatlarni shakllantirib, istalgan ko‘nikmani <strong class="text-red-700">10 baravar tezroq o‘rganish</strong> usullarini',
+                      'Ibodatga ishtiyoq bilan turish va dangasalikni yengishning <strong class="text-red-700">psixologik va amaliy yo\'lini</strong> bilib olasiz',
+                      'Nega pul qo\'lingizda turmaydi va qarzlar ko\'payaverdi? <strong class="text-red-700">Aniq javobini olasiz</strong>',
+                      'Eringizning hurmati va e\'tiborini qaytarishning <strong class="text-red-700">sirli yo\'lini</strong> o\'rganasiz',
                     ].map((text, idx) => (
                       <div key={idx} className="flex gap-3 items-start w-full">
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 flex items-center justify-center mt-0.5">
@@ -361,7 +384,6 @@ export default function SiteA() {
                             className="w-4 h-4"
                           />
                         </div>
-
                         <p
                           className="text-sm font-medium text-gray-800 leading-relaxed text-left w-full"
                           dangerouslySetInnerHTML={{ __html: text }}
@@ -370,18 +392,34 @@ export default function SiteA() {
                     ))}
                   </div>
                 </div>
+
+                {/* Taymer */}
                 <div className="w-full bg-gradient-to-r from-gray-100 to-gray-50 rounded-xl py-4 px-6 flex items-center justify-between shadow-inner">
-                  <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">Aktsiya tugashiga:</span>
-                  <span className="text-5xl font-black text-red-600 font-mono tracking-wider bg-white px-6 py-2 rounded-lg shadow-md">{timerDisplay}</span>
+                  <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                    Aktsiya tugashiga:
+                  </span>
+                  <span className="text-5xl font-black text-red-600 font-mono tracking-wider bg-white px-6 py-2 rounded-lg shadow-md">
+                    {timerDisplay}
+                  </span>
                 </div>
+
+                {/* Tugmalar */}
                 <div className="w-full space-y-4 pt-2">
                   <button
                     onClick={() => setShowPopup(true)}
                     className="w-full bg-red-600 text-white font-extrabold text-base tracking-wider uppercase py-5 rounded-xl shadow-[0_8px_0_#8b0e0e] hover:shadow-[0_4px_0_#8b0e0e] hover:translate-y-1 transition-all duration-150 hover:bg-red-700 flex items-center justify-center gap-3 group"
                   >
-                    RO‘YXATDAN O‘TISH
-                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                    RO'YXATDAN O'TISH
+                    <svg
+                      className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
                   </button>
+
                   <div className="flex items-center justify-end gap-4">
                     <img
                       src="https://optim.tildacdn.one/tild6264-6337-4463-b934-656161336537/-/resize/164x/-/format/webp/Arrow_2.png.webp"
@@ -394,17 +432,20 @@ export default function SiteA() {
                     </div>
                   </div>
                 </div>
+
                 <div className="w-full pt-2">
                   <button
                     onClick={() => setShowPopup(true)}
                     className="w-full bg-white border-2 border-red-600 text-red-600 font-extrabold text-sm tracking-wider uppercase py-3 rounded-xl hover:bg-red-50 transition-all duration-200 shadow-md hover:shadow-lg"
                   >
-                    Yana bir bor ro‘yxatdan o‘tish
+                    Yana bir bor ro'yxatdan o'tish
                   </button>
                 </div>
+
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -420,7 +461,7 @@ export default function SiteA() {
         </div>
       </footer>
 
-      {/* POPUP with Supabase integration and Country Selector */}
+      {/* POPUP */}
       {showPopup && (
         <div
           className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
@@ -446,10 +487,10 @@ export default function SiteA() {
               </svg>
             </button>
             <h3 className="text-lg md:text-xl font-bold text-center mb-6 text-black">
-              Ro‘yxatdan o‘tish uchun ma’lumotlaringizni kiriting!
+              Ro'yxatdan o'tish uchun ma'lumotlaringizni kiriting!
             </h3>
             <form onSubmit={handleSubmit}>
-              {/* Name input */}
+              {/* Ism */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-black mb-1">Ismingiz</label>
                 <input
@@ -462,11 +503,10 @@ export default function SiteA() {
                 />
               </div>
 
-              {/* Phone input with country selector */}
+              {/* Telefon */}
               <div className="mb-4 relative">
                 <label className="block text-sm font-medium text-black mb-1">Telefon raqamingiz</label>
                 <div className="flex border border-gray-300 rounded-lg overflow-visible focus-within:border-red-500 transition">
-                  {/* Country selector button */}
                   <button
                     ref={countryButtonRef}
                     type="button"
@@ -489,7 +529,6 @@ export default function SiteA() {
                     </svg>
                   </button>
 
-                  {/* Phone number input */}
                   <input
                     ref={phoneInputRef}
                     type="tel"
@@ -497,7 +536,6 @@ export default function SiteA() {
                     placeholder={selectedCountry?.placeholder || '00 000 00 00'}
                     value={formData.phone}
                     onChange={(e) => {
-                      // Allow only digits and spaces
                       const val = e.target.value.replace(/[^\d\s]/g, '')
                       setFormData({ ...formData, phone: val })
                     }}
@@ -506,13 +544,12 @@ export default function SiteA() {
                   />
                 </div>
 
-                {/* Country dropdown */}
+                {/* Dropdown */}
                 {showCountryDropdown && (
                   <div
                     ref={countryDropdownRef}
                     className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-300 rounded-xl shadow-2xl z-[60] max-h-72 overflow-hidden"
                   >
-                    {/* Search input inside dropdown */}
                     <div className="p-2 border-b border-gray-200 sticky top-0 bg-white z-10">
                       <div className="relative">
                         <svg
@@ -538,8 +575,6 @@ export default function SiteA() {
                         />
                       </div>
                     </div>
-
-                    {/* Country list */}
                     <div className="overflow-y-auto max-h-52">
                       {filteredCountries.map((country, idx) => {
                         const isSelected =
@@ -557,7 +592,6 @@ export default function SiteA() {
                               })
                               setShowCountryDropdown(false)
                               setCountrySearch('')
-                              // Focus back on phone input
                               setTimeout(() => phoneInputRef.current?.focus(), 100)
                             }}
                             className={`w-full px-3 py-2.5 text-left flex items-center gap-3 hover:bg-red-50 transition text-sm border-b border-gray-100 last:border-b-0 ${
@@ -582,7 +616,6 @@ export default function SiteA() {
                 )}
               </div>
 
-              {/* Phone hint */}
               <p className="text-xs text-gray-400 -mt-2 mb-4">
                 Namuna: {selectedCountry?.code} {selectedCountry?.placeholder}
               </p>

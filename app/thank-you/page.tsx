@@ -1,7 +1,7 @@
 'use client'
 
 export default function ThankYouPage() {
-  const telegramLink = 'https://t.me/+220BuH8qpNQxMmQ6'
+  const telegramLink = 'https://t.me/+s_BXQFrGwRZhMjVi'
 
   return (
     <div
