@@ -242,8 +242,8 @@ export default function SiteA() {
                </h1>
 
                 <h2 className="text-[18px] font-bold text-black leading-tight mb-6 order-4">
-                  <span className="text-black">Ko'pchilik ayollar bilmaydigan</span>
-                  {' '} <span className='text-red-700'>3 ta sir</span> — siz uchun hayotingizni{' '}
+                  <span className="text-black">Qanday qilib 3 kun ichida</span>
+                  {' '} <span className='text-red-700'>dangasalik, qarz va oilaviy muammolardan </span> qutilib, xotirjam ayolga aylanish mumkin{' '}
                   <span className="text-black">tubdan o'zgartirishi mumkin</span>
                 </h2>
 
