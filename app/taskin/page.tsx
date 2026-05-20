@@ -9,6 +9,9 @@ const SUPABASE_ANON_KEY =
   "sb_publishable_pXpHGuZFzmhJUD6FkQeapQ__7D78i4w";
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+const WEBINAR_API_URL = "https://app.webinar-payment.uz/tilda/add-client";
+const WEBINAR_SECRET_KEY = "S7zm5wtGxlT6zF_";
+
 const COURSE = {
   label: "Taskin kursi",
   value: "taskin",
@@ -45,6 +48,23 @@ export default function RegisterPage() {
     return errs;
   }
 
+  async function sendToWebinarApi(name: string, phone: string) {
+    try {
+      await fetch(WEBINAR_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          phone,
+          TARIF: "TASKIN",
+          secret_key: WEBINAR_SECRET_KEY,
+        }),
+      });
+    } catch (err) {
+      console.error("Webinar API xatosi:", err);
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const errs = validate();
@@ -56,17 +76,12 @@ export default function RegisterPage() {
     setLoading(true);
 
     const phone = phoneCode + phoneNumber.trim();
+    const name = fullName.trim();
 
     try {
       const { data, error } = await supabase
         .from("taskin")
-        .insert([
-          {
-            full_name: fullName.trim(),
-            phone_number: phone,
-            is_uploaded: false,
-          },
-        ])
+        .insert([{ full_name: name, phone_number: phone, is_uploaded: false }])
         .select("id")
         .single();
 
@@ -74,12 +89,10 @@ export default function RegisterPage() {
 
       const recordId = data.id;
 
+      await sendToWebinarApi(name, phone);
+
       router.push(
-        `/taskin/pay?id=${recordId}&full_name=${encodeURIComponent(
-          fullName.trim()
-        )}&phone_number=${encodeURIComponent(phone)}&tariff_label=${encodeURIComponent(
-          COURSE.label
-        )}&tariff_value=${COURSE.value}&tariff_price=${COURSE.price}`
+        `/taskin/pay?id=${recordId}&full_name=${encodeURIComponent(name)}&phone_number=${encodeURIComponent(phone)}&tariff_label=${encodeURIComponent(COURSE.label)}&tariff_value=${COURSE.value}&tariff_price=${COURSE.price}`
       );
     } catch (err: any) {
       setErrors({ submit: `Xatolik: ${err.message}` });
@@ -90,7 +103,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center py-8 px-4 sm:px-6">
-      {/* Sarlavhalar */}
+      {/* Sarlavha */}
       <header className="w-full text-center mb-6">
         <p className="text-2xl font-extrabold leading-tight">
           <span className="text-[#E63429]">TASKIN KURSIDA ISHTIROK</span>
@@ -102,24 +115,20 @@ export default function RegisterPage() {
 
       {/* Asosiy karta */}
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-5 pb-7">
-        {/* Qadam paneli (step bar) – to‘g‘rilangan */}
         <StepBar step={1} />
 
         {/* Brend banner */}
         <div className="bg-[#1a3535] text-white font-extrabold text-xl tracking-widest text-center rounded-xl py-3.5 mb-6">
-          TASKIN
+          TASKIN KURSI
         </div>
 
         {/* Kurs tavsifi */}
         <div className="text-center mb-6">
-          <h2 className="text-gray-900 font-extrabold text-lg mb-1">
-            Taskin kursi
-          </h2>
           <p className="text-gray-700 text-sm leading-relaxed mb-3">
-            Har qanday muammoga taskin ila oson va yengil yechim topishni o‘rganasiz
+            Har qanday muammoga taskin ila oson va yengil yechim topishni o'rganasiz
           </p>
           <p className="text-2xl font-extrabold text-[#1a3535]">
-            {COURSE.price.toLocaleString("uz-UZ")} so‘m
+            {String(COURSE.price).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} so'm
           </p>
         </div>
 
@@ -135,9 +144,7 @@ export default function RegisterPage() {
               onChange={(e) => setFullName(e.target.value)}
               autoComplete="name"
               className={`w-full px-4 py-3.5 rounded-xl border-2 text-gray-900 placeholder-gray-400 bg-white outline-none transition ${
-                errors.fullName
-                  ? "border-[#E63429]"
-                  : "border-gray-300 focus:border-[#E63429]"
+                errors.fullName ? "border-[#E63429]" : "border-gray-300 focus:border-[#E63429]"
               }`}
             />
             {errors.fullName && (
@@ -167,9 +174,7 @@ export default function RegisterPage() {
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 autoComplete="tel"
                 className={`flex-1 px-4 py-3.5 rounded-xl border-2 text-gray-900 placeholder-gray-400 bg-white outline-none transition ${
-                  errors.phoneNumber
-                    ? "border-[#E63429]"
-                    : "border-gray-300 focus:border-[#E63429]"
+                  errors.phoneNumber ? "border-[#E63429]" : "border-gray-300 focus:border-[#E63429]"
                 }`}
               />
             </div>
@@ -187,8 +192,16 @@ export default function RegisterPage() {
               onChange={(e) => setAgreed(e.target.checked)}
               className="w-5 h-5 mt-0.5 accent-[#E63429] cursor-pointer flex-shrink-0"
             />
-            <label htmlFor="oferta" className="text-sm text-gray-800 cursor-pointer">
-              <span className="text-[#E63429] font-semibold">Ommaviy Oferta shartnomasi</span>{" "}
+            <label htmlFor="oferta" className="text-sm text-gray-800 cursor-pointer leading-relaxed">
+              <a
+                href="/oferta.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#E63429] font-semibold underline underline-offset-2 hover:text-red-700 transition"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Ommaviy offerta shartnomasi
+              </a>{" "}
               shartlariga roziman
             </label>
           </div>
@@ -214,17 +227,17 @@ export default function RegisterPage() {
         </form>
       </div>
 
-      {/* Telefon */}
+      {/* Telegram */}
       <div className="mt-6 bg-white/10 backdrop-blur rounded-full py-2.5 px-7 border border-white/20">
-        <a href="tel:+998951601117" className="text-white font-semibold">
-          +998 95 160 11 17
+        <a href="https://t.me/iimaan_admin1" className="text-white font-semibold">
+          @iimaan_admin1
         </a>
       </div>
     </div>
   );
 }
 
-/* ========== StepBar (to‘g‘rilangan) ========== */
+/* ========== StepBar ========== */
 function StepBar({ step }: { step: number }) {
   const steps = [
     { id: 1, label: "Ma'lumot\nkiritish" },
@@ -236,28 +249,18 @@ function StepBar({ step }: { step: number }) {
     <div className="flex items-center justify-center mb-6">
       {steps.map((s, index) => (
         <div key={s.id} className="flex items-center flex-1">
-          {/* chap chiziq (birinchi elementdan tashqari) */}
           {index > 0 && (
             <div
               className="flex-1 h-[3px] rounded"
-              style={{
-                background: step > s.id ? "#E63429" : "#ddd",
-                minWidth: "8px",
-              }}
+              style={{ background: step > s.id ? "#E63429" : "#ddd", minWidth: "8px" }}
             />
           )}
-
-          {/* aylana va label */}
           <div className="flex flex-col items-center gap-1 flex-shrink-0">
             <div
               className="w-[30px] h-[30px] rounded-full flex items-center justify-center border-[2.5px]"
               style={{
-                background:
-                  step > s.id
-                    ? "#E63429"
-                    : "#fff",
-                borderColor:
-                  step >= s.id ? "#E63429" : "#ddd",
+                background: step > s.id ? "#E63429" : "#fff",
+                borderColor: step >= s.id ? "#E63429" : "#ddd",
               }}
             >
               {step > s.id ? (
@@ -265,9 +268,7 @@ function StepBar({ step }: { step: number }) {
               ) : (
                 <span
                   className="block w-2.5 h-2.5 rounded-full"
-                  style={{
-                    background: step === s.id ? "#E63429" : "#ddd",
-                  }}
+                  style={{ background: step === s.id ? "#E63429" : "#ddd" }}
                 />
               )}
             </div>
@@ -275,15 +276,10 @@ function StepBar({ step }: { step: number }) {
               {s.label}
             </span>
           </div>
-
-          {/* o‘ng chiziq (oxirgi elementdan tashqari) */}
           {index < steps.length - 1 && (
             <div
               className="flex-1 h-[3px] rounded"
-              style={{
-                background: step > s.id ? "#E63429" : "#ddd",
-                minWidth: "8px",
-              }}
+              style={{ background: step > s.id ? "#E63429" : "#ddd", minWidth: "8px" }}
             />
           )}
         </div>
