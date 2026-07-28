@@ -229,23 +229,42 @@ export default function SiteA() {
               <div className="flex flex-col items-center text-center">
 
                 <span className="inline-block border -mt-4 border-red-600 rounded-full px-3 py-1.5 text-xs font-medium text-black mb-4 order-1">
-                  8-9-10 may | Soat 20:00 da
+                  1-2 avgust | Soat 20:00 da
                 </span>
 
                 <p className="text-xs font-light text-black mb-2 order-2">
-                  Iman Akhmedovnadan 3 kunlik bepul onlayn dars
+                  Iman Akhmedovnadan 2 kunlik bepul online dars
                 </p>
 
                 {/* SARLAVHA */}
-                <h1 className="text-[28px] font-black text-black leading-tight mb-3 order-3 uppercase tracking-wide text-center">
-                  <span className="block text-[30px] font-black text-black leading-none">Xotirjam <span className='font-black text-black'>Ayol </span><span className='font-black text-red-700'>Sirlari</span></span>
+                <h1 className="text-[22px] font-black text-black leading-tight mb-5 order-3 text-center" style={{fontFamily: "'Georgia', 'Times New Roman', serif", fontSize: '33px', fontWeight: '650', letterSpacing: '-0.4px', lineHeight: '1.3'}}>
+                  To’g’ri  duo  qilish  orqali  istalgan  muammoga  yechim  topish  sirlari
                </h1>
 
-                <h2 className="text-[18px] font-bold text-black leading-tight mb-6 order-4">
-                  <span className="text-black">Qanday qilib 3 kun ichida</span>
-                  {' '} <span className='text-red-700'>dangasalik, qarz va oilaviy muammolardan </span> qutilib, xotirjam ayolga aylanish mumkin{' '}
-                  <span className="text-black">tubdan o'zgartirishi mumkin</span>
-                </h2>
+               <h2
+  className="text-base font-normal text-gray-700 leading-relaxed mb-6 order-4"
+  style={{
+    fontFamily: "'Trebuchet MS', 'Lucida Grande', sans-serif",
+    fontSize: "14px",
+    fontWeight: "400",
+    lineHeight: "1.7",
+    color: "#4b5563",
+  }}
+>
+  <span className="text-black">Qanday qilib 2 kun ichida </span>
+
+  <span className="font-extrabold text-red-600">
+    TO‘G‘RI DUO
+  </span>
+
+  <span className="text-red-600 font-semibold"> qilish orqali </span>
+
+  <span className="font-extrabold text-black">
+    hiyonat, ajrim va kundoshlikdan 
+  </span>
+
+  <span className="text-black"> chiqish mumkin?</span>
+</h2>
 
                 <div className="flex justify-center items-end pt-0 order-5 md:order-1 -mt-5">
                   <img
@@ -270,9 +289,6 @@ export default function SiteA() {
                     />
                     <span className="text-4xl font-extrabold text-black">BEPUL</span>
                   </div>
-                  {/* <div className="w-full text-center bg-black/4 mt-4 rounded-2xl py-3 px-2 order-9">
-                    <span className="text-2xl font-extrabold text-black">{timerDisplay}</span>
-                  </div> */}
                 </div>
 
                 <div className="bg-gray-50 border-2 border-gray-300 rounded-3xl p-5 w-full max-w-[513px] mx-auto mb-8 order-7 text-left">
@@ -280,9 +296,10 @@ export default function SiteA() {
                     Marafonda siz:
                   </p>
                   {[
-                    "Ibodatga ishtiyoq bilan turish va dangasalikni yengishning psixologik va amaliy yo`lini bilib olasiz",
-                    "Nega pul qo'lingizda turmaydi va qarzlar ko'payaverdi? Aniq javobini olasiz",
-                    "Eringizning hurmati va e`tiborini qaytarishning sirli yo`lini o`rganasiz",
+                    "To’g’ri duo qilishni psihologik sirlari, duo orqali istalgan muammodan chiqish mumkinligi",
+                    "Ajrim yoqasiga kelgan oilani atiga bitta qadam orqali muhabbatli oilaga aylantirasiz",
+                    "Hiyonat o'yinidan chiqib, eringizni qalbidagi joyni o'zingizga qaytarib olasiz",
+                    "Qanday qilib o'ziga ishongan, viqorli va xotirjam qalb egasi bo'lishni o'rganasiz",
                   ].map((text, idx) => (
                     <div key={idx} className="flex items-start gap-3 mb-4 last:mb-0 w-full">
                       <img
@@ -342,26 +359,22 @@ export default function SiteA() {
 
                 {/* Badge */}
                 <span className="inline-block border-2 border-red-600 rounded-full px-4 py-1.5 text-sm font-semibold text-black bg-white/50 backdrop-blur-sm shadow-sm">
-                  🔥 8-9-10 may | Soat 20:00 da
+                  🔥 1-2 avgust | Soat 20:00 da
                 </span>
 
                 {/* Kichik tavsif */}
                 <p className="text-base font-medium text-black/80 tracking-wide">
-                  Iman Akhmedovnadan 3 kunlik bepul onlayn dars
+                  Iman Akhmedovnadan 2 kunlik bepul online dars
                 </p>
 
-                {/* Asosiy sarlavha — mobile bilan bir xil */}
-                <h1 className="text-5xl font-black uppercase tracking-wide leading-tight">
-                  <span className="block text-red-700">Xotirjam Ayol</span>
-                  <span className="block text-black">Sirlari</span>
+                {/* Asosiy sarlavha */}
+                <h1 className="font-black uppercase tracking-wide leading-tight mb-5" style={{fontFamily: "'Georgia', 'Times New Roman', serif", fontSize: '52px', fontWeight: '700', letterSpacing: '-1px', lineHeight: '1.1', color: '#000'}}>
+                  Suyukli Rafiqalik <span className='text-red-700'>3 ta Siri</span>
                 </h1>
 
-                {/* H2 tavsif — mobile bilan bir xil */}
-                <h2 className="text-2xl font-bold text-black leading-snug">
-                  <span className="text-red-600">Qanday qilib</span> 3 kun ichida dangasalik, qarz va oilaviy
-                  muammolardan{' '}
-                  <span className="text-red-600 underline decoration-wavy">qutilib,</span>{' '}
-                  xotirjam ayolga aylanish mumkin
+                {/* H2 tavsif */}
+                <h2 className="font-normal text-gray-700 leading-relaxed mb-5" style={{fontFamily: "'Trebuchet MS', 'Lucida Grande', sans-serif", fontSize: '18px', fontWeight: '400', lineHeight: '1.8', color: '#4b5563'}}>
+                  <span className="text-black font-medium">Qanday qilib 2 kun ichida</span> <span className="text-red-600 font-semibold">hiyonat, kundoshlik va ajrim yoqasidan chiqib,</span> yoringizni yagona va suyuklisiga aylanish mumkin
                 </h2>
 
                 {/* Card — nima o'rganasiz — mobile bilan bir xil */}
@@ -372,9 +385,10 @@ export default function SiteA() {
                   </p>
                   <div className="space-y-4">
                     {[
-                      'Ibodatga ishtiyoq bilan turish va dangasalikni yengishning <strong class="text-red-700">psixologik va amaliy yo\'lini</strong> bilib olasiz',
-                      'Nega pul qo\'lingizda turmaydi va qarzlar ko\'payaverdi? <strong class="text-red-700">Aniq javobini olasiz</strong>',
-                      'Eringizning hurmati va e\'tiborini qaytarishning <strong class="text-red-700">sirli yo\'lini</strong> o\'rganasiz',
+                      'Erni aqlga, Allohni qalbga tushirishni o\'rganib bir umrga yoringizni <strong class="text-red-700">o\'zingizga ipsiz bog\'lash</strong> bilib olasiz',
+                      'Ajrim yoqasiga kelgan oilani atiga <strong class="text-red-700">bitta qadam orqali</strong> muhabbatli oilaga aylantirasiz',
+                      'Hiyonat o\'yinidan chiqib, eringizni <strong class="text-red-700">qalbidagi joyni</strong> o\'zingizga qaytarib olasiz',
+                      'Qanday qilib <strong class="text-red-700">o\'ziga ishongan, viqorli va xotirjam</strong> qalb egasi bo\'lishni o\'rganasiz',
                     ].map((text, idx) => (
                       <div key={idx} className="flex gap-3 items-start w-full">
                         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 flex items-center justify-center mt-0.5">
